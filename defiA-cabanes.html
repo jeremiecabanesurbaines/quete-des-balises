@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Défi A - Balise N°8</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F9E1A8;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0;
+            color: #333;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 30px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            width: 80%;
+            max-width: 300px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        /* Sections masquées par défaut */
+        #bloc-question, #success-message {
+            display: none;
+        }
+        #success-message {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #155724;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <img src="defi-A-noir.png" alt="Logo Défi A" class="logo">
+    
+    <!-- Zone du code d'accès -->
+    <div id="bloc-acces">
+        <p>Code d’accès :</p>
+        <input type="password" id="code-acces">
+        <button onclick="verifierCode()">Valider</button>
+    </div>
+
+    <!-- Zone de la question (débloquée par le code) -->
+    <div id="bloc-question">
+        <p>Question : Quelle mer borde à la fois le sud de la France, le nord de l'Égypte et l'ouest de la Grèce ?</p>
+        <input type="text" id="answer" placeholder="Ma réponse">
+        <button onclick="verifierReponse()">Valider</button>
+    </div>
+
+    <!-- Zone du message de réussite -->
+    <div id="success-message">
+        Exact ! Rendez-vous à la balise N°15. Code d'accès : 8933
+    </div>
+
+    <script>
+        function verifierCode() {
+            let code = document.getElementById('code-acces').value.trim();
+            if (code === "4512") {
+                // Masquer le formulaire d'accès et afficher la question
+                document.getElementById('bloc-acces').style.display = 'none';
+                document.getElementById('bloc-question').style.display = 'block';
+            } else {
+                alert("Code d'accès incorrect !");
+            }
+        }
+
+        function verifierReponse() {
+            // Récupère la valeur, passe en minuscules, retire les accents
+            let saisie = document.getElementById('answer').value;
+            let saisieNormalisee = saisie.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+            
+            if (saisieNormalisee === "mediterranee") {
+                document.getElementById('success-message').style.display = 'block';
+            } else {
+                alert("Mauvaise réponse, essayez encore !");
+                document.getElementById('success-message').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
