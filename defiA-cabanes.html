@@ -20,18 +20,13 @@
         }
         h2 {
             font-size: 1.5rem;
-            margin: 10px 0;
-        }
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 30px;
+            margin: 10px 0 30px 0;
         }
         p {
             font-size: 1.2rem;
             margin-bottom: 20px;
         }
-        input[type="text"], input[type="password"] {
+        input[type="text"] {
             padding: 12px;
             font-size: 1rem;
             font-family: 'Poppins', sans-serif;
@@ -119,12 +114,11 @@
 <body>
     <img src="defi-A-noir.png" alt="Logo Défi A" class="logo">
     <h2>Thème du défi géographie</h2>
-    <h3>Votre mission :</h3>
     
     <!-- Zone du code d'accès -->
     <div id="bloc-acces">
         <p>Code d’accès :</p>
-        <input type="password" id="code-acces">
+        <input type="text" id="code-acces">
         <button type="button" onclick="verifierCode()">Valider</button>
     </div>
 
