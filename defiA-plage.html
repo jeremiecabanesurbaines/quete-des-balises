@@ -64,9 +64,15 @@
             color: #155724;
             border: 2px solid #28a745;
             border-radius: 8px;
-            font-weight: 600;
             font-size: 1.1rem;
             text-align: left; /* Aligné à gauche pour faciliter la lecture de l'indice */
+        }
+        /* Mise en avant spécifique pour les indices */
+        .indices-gras {
+            font-weight: 600;
+            color: #000;
+            display: inline-block;
+            margin: 10px 0;
         }
         /* Styles pour la barre de progression */
         .progress-container {
@@ -134,8 +140,10 @@
     <div id="success-message">
         Félicitations, défi validé !<br><br>
         Voici votre premier indice pour le code du cadenas :<br>
-        - La troisième molette du cadenas est figée sur le chiffre 2.<br>
-        - Le chiffre de la quatrième molette est strictement inférieur à celui de la troisième.<br><br>
+        <span class="indices-gras">
+            - La troisième molette du cadenas est figée sur le chiffre 2.<br>
+            - Le chiffre de la quatrième molette est strictement inférieur à celui de la troisième.
+        </span><br><br>
         Notez ces indices, ils vous seront précieux !
     </div>
 
