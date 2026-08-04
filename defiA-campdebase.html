@@ -16,6 +16,15 @@
         }
         .logo {
             max-width: 200px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
             margin-bottom: 30px;
         }
         p {
@@ -60,24 +69,82 @@
             font-weight: 600;
             font-size: 1.1rem;
         }
+        /* Styles pour la barre de progression */
+        .progress-container {
+            margin-top: 50px;
+        }
+        .progress-text {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            right: 15px;
+            border-top: 2px dashed #333;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+        .progress-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        .progress-circle.active {
+            background-color: #28a745; /* Vert */
+        }
     </style>
 </head>
 <body>
     <img src="defi-A-noir.png" alt="Logo Défi A" class="logo">
+    <h2>Thème du défi géographie</h2>
+    <h3>Votre mission :</h3>
+    
     <p>Question : "Je suis le seul continent qui s'étend sur les 4 hémisphères de la planète (Nord, Sud, Est, Ouest). Qui suis-je ?"</p>
     
     <div>
         <input type="text" id="answer" placeholder="Ma réponse">
-        <button onclick="verifierReponse()">Valider</button>
+        <button type="button" onclick="verifierReponse()">Valider</button>
     </div>
 
     <div id="success-message">
         Bravo ! Cherchez la balise N°8. Code d'accès : 4512.
     </div>
 
+    <!-- Visuel d'avancement -->
+    <div class="progress-container">
+        <div class="progress-text">Progression dans le défi</div>
+        <div class="progress-bar">
+            <div class="progress-line"></div>
+            <div class="progress-circle">1</div>
+            <div class="progress-circle active">2</div>
+            <div class="progress-circle">3</div>
+            <div class="progress-circle">4</div>
+            <div class="progress-circle">5</div>
+            <div class="progress-circle">6</div>
+        </div>
+    </div>
+
     <script>
         function verifierReponse() {
-            // Récupère la valeur saisie, la passe en minuscules, retire les accents et les espaces superflus
             let saisie = document.getElementById('answer').value;
             let saisieNormalisee = saisie.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
             
