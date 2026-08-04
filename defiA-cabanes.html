@@ -72,14 +72,16 @@
     <div id="bloc-acces">
         <p>Code d’accès :</p>
         <input type="password" id="code-acces">
-        <button onclick="verifierCode()">Valider</button>
+        <!-- L'attribut type="button" bloque le rechargement intempestif de la page -->
+        <button type="button" onclick="verifierCode()">Valider</button>
     </div>
 
     <!-- Zone de la question (débloquée par le code) -->
     <div id="bloc-question">
         <p>Question : Quelle mer borde à la fois le sud de la France, le nord de l'Égypte et l'ouest de la Grèce ?</p>
         <input type="text" id="answer" placeholder="Ma réponse">
-        <button onclick="verifierReponse()">Valider</button>
+        <!-- L'attribut type="button" est également ajouté ici -->
+        <button type="button" onclick="verifierReponse()">Valider</button>
     </div>
 
     <!-- Zone du message de réussite -->
