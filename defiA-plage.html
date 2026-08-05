@@ -165,7 +165,8 @@
     <script>
         function verifierCode() {
             let code = document.getElementById('code-acces').value.trim();
-            if (code === "7721") {
+            // Ajout du code master 9898
+            if (code === "7721" || code === "9898") {
                 document.getElementById('bloc-acces').style.display = 'none';
                 document.getElementById('bloc-question').style.display = 'block';
             } else {
