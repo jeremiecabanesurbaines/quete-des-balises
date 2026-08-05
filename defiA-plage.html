@@ -67,32 +67,12 @@
             font-size: 1.1rem;
             text-align: left; /* Aligné à gauche pour faciliter la lecture de l'indice */
         }
-        /* Mise en avant spécifique pour les indices avec effet d'explosion */
-        .indices-explosion {
+        /* Mise en avant spécifique pour les indices */
+        .indices-texte {
             font-weight: 600;
-            color: #FF746C;
+            color: #000;
             display: inline-block;
             margin: 15px 0;
-            animation: explosion 1.5s infinite; /* Boucle d'animation */
-        }
-
-        /* Définition de l'animation d'explosion/pulsation */
-        @keyframes explosion {
-            0% {
-                transform: scale(0.9);
-                opacity: 0.7;
-                text-shadow: 0 0 0 rgba(255, 116, 108, 0);
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 1;
-                text-shadow: 0 0 10px rgba(255, 116, 108, 0.6);
-            }
-            100% {
-                transform: scale(0.9);
-                opacity: 0.7;
-                text-shadow: 0 0 0 rgba(255, 116, 108, 0);
-            }
         }
 
         /* Styles pour la barre de progression */
@@ -161,7 +141,7 @@
     <div id="success-message">
         Félicitations, défi validé !<br><br>
         Voici votre premier indice pour le code du cadenas :<br>
-        <span class="indices-explosion">
+        <span class="indices-texte">
             La troisième molette du cadenas est figée sur le chiffre 2.<br>
             Le chiffre de la quatrième molette est strictement inférieur à celui de la troisième.
         </span><br><br>
