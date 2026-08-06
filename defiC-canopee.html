@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Défi C - Balise N°7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #BCD8EC;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0;
+            color: #333;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 10px 0 30px 0;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            width: 80%;
+            max-width: 300px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        /* Sections masquées par défaut */
+        #bloc-question, #success-message {
+            display: none;
+        }
+        #success-message {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #155724;
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: left; /* Aligné à gauche pour faciliter la lecture de l'indice */
+        }
+        /* Mise en avant spécifique pour les indices */
+        .indices-texte {
+            font-weight: 600;
+            color: #000;
+            display: inline-block;
+            margin: 15px 0;
+        }
+
+        /* Styles pour la barre de progression */
+        .progress-container {
+            margin-top: 50px;
+        }
+        .progress-text {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            right: 15px;
+            border-top: 2px dashed #333;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+        .progress-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        .progress-circle.active {
+            background-color: #28a745; /* Vert */
+        }
+    </style>
+</head>
+<body>
+    <img src="defi-C-noir.png" alt="Logo Défi C" class="logo">
+    <h2>Thème du défi « La Rochelle »</h2>
+    
+    <!-- Zone du code d'accès -->
+    <div id="bloc-acces">
+        <p>Code d’accès :</p>
+        <input type="text" id="code-acces">
+        <button type="button" onclick="verifierCode()">Valider</button>
+    </div>
+
+    <!-- Zone de la question (débloquée par le code) -->
+    <div id="bloc-question">
+        <p>Je suis une forteresse de pierre située en pleine mer entre l'île d'Aix et l'île d'Oléron. Je suis surtout connu grâce à une célèbre émission télévisée et au Père Fouras. Qui suis-je ?</p>
+        <input type="text" id="answer" placeholder="Ma réponse">
+        <button type="button" onclick="verifierReponse()">Valider</button>
+    </div>
+
+    <!-- Zone du message de réussite -->
+    <div id="success-message">
+        Félicitations, défi validé !<br><br>
+        Voici votre premier indice pour le code du cadenas :<br>
+        <span class="indices-texte">
+            La première molette est strictement inférieure à la troisième molette.<br>
+            La deuxième molette est un multiple de 3.
+        </span><br><br>
+        Notez ces indices, ils vous seront précieux !
+    </div>
+
+    <!-- Visuel d'avancement -->
+    <div class="progress-container">
+        <div class="progress-text">Progression dans le défi</div>
+        <div class="progress-bar">
+            <div class="progress-line"></div>
+            <div class="progress-circle">1</div>
+            <div class="progress-circle">2</div>
+            <div class="progress-circle">3</div>
+            <div class="progress-circle">4</div>
+            <div class="progress-circle">5</div>
+            <div class="progress-circle active">6</div>
+        </div>
+    </div>
+
+    <script>
+        function verifierCode() {
+            let code = document.getElementById('code-acces').value.trim();
+            // Code balise 9315 ou code master 9898
+            if (code === "9315" || code === "9898") {
+                document.getElementById('bloc-acces').style.display = 'none';
+                document.getElementById('bloc-question').style.display = 'block';
+            } else {
+                alert("Code d'accès incorrect !");
+            }
+        }
+
+        function verifierReponse() {
+            let saisie = document.getElementById('answer').value;
+            let saisieNormalisee = saisie.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+            
+            // On accepte "fort boyard" ou "fort-boyard"
+            if (saisieNormalisee === "fort boyard" || saisieNormalisee === "fort-boyard") {
+                document.getElementById('success-message').style.display = 'block';
+            } else {
+                alert("Mauvaise réponse, essayez encore !");
+                document.getElementById('success-message').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
