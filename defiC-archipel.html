@@ -164,8 +164,8 @@
             let saisie = document.getElementById('answer').value;
             let saisieNormalisee = saisie.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
             
-            // On accepte "saint nicolas" ou "saint-nicolas"
-            if (saisieNormalisee === "saint nicolas" || saisieNormalisee === "saint-nicolas") {
+            // On accepte uniquement "nicolas"
+            if (saisieNormalisee === "nicolas") {
                 document.getElementById('success-message').style.display = 'block';
             } else {
                 alert("Mauvaise réponse, essayez encore !");
